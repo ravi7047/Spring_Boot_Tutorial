@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: eureka-service
+    
+server:
+ port: 8302
+ 
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+  server:
+      waitTimeInMsWhenSyncEmpty: 0
+   
+#http://localhost:8302/entry/abc/afasdfsad/ --> Rejected 
+#http://localhost:8302/api/db-service/rest/db/ramu --> http://localhost:8300/rest/db/ramu
+#http://localhost:8302/api/stock-service/rest/stock/ramu --> http://localhost:8301/rest/stock/ramu 
+
+#http://localhost:8302/newapi/stock-service/rest/stock/ramu -rejected
+zuul:
+  #Service will be mapped under the /api URI
+  prefix: /api
+  routes:
+    db-service:
+      path: /db-service/**
+      url: http://localhost:8300
+    stock-service:
+      path: /stock-service/**
+      url: http://localhost:8301
