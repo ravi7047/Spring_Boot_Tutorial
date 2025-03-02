@@ -1,0 +1,11 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        
+#management:
+ # endpoints:
+  #  web:
+   #   exposure:
+    #    include: ["metrics", "beans","dump","httptrace"]
